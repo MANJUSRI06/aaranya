@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Lock, Mail, ShieldCheck, ArrowRight, Sparkles } from 'lucide-react';
+import { Lock, Mail, ShieldAlert, ArrowRight } from 'lucide-react';
 import { loginAdmin, getCurrentAdmin } from '../../services/db';
 import { useToast } from '../../components/common/Toast';
 
@@ -35,11 +35,6 @@ export const AdminLoginPage: React.FC = () => {
     }
   };
 
-  const handleFillDemo = () => {
-    setEmail('admin@aaranya.com');
-    setPassword('aaranya2026');
-  };
-
   return (
     <div
       style={{
@@ -62,16 +57,46 @@ export const AdminLoginPage: React.FC = () => {
           boxShadow: 'var(--shadow-md)',
         }}
       >
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
           <div className="brand-wordmark" style={{ marginBottom: '1rem' }}>
             <span className="title" style={{ fontSize: '1.75rem' }}>
               AARANYA
             </span>
             <span className="tagline">Atelier Management Portal</span>
           </div>
-          <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-            Authorized master curators and administrative personnel only.
-          </p>
+        </div>
+
+        {/* Prominent Admin-Only Access Restriction Banner */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '0.75rem',
+            padding: '0.9rem 1.1rem',
+            backgroundColor: 'var(--color-maroon-surface)',
+            border: '1px solid #E8C4C0',
+            borderRadius: 'var(--radius-xs)',
+            marginBottom: '1.75rem',
+            textAlign: 'left',
+          }}
+        >
+          <ShieldAlert size={20} color="var(--color-maroon)" style={{ flexShrink: 0, marginTop: '2px' }} />
+          <div>
+            <div
+              style={{
+                fontWeight: 700,
+                fontSize: '0.85rem',
+                color: 'var(--color-maroon-dark)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.06em',
+              }}
+            >
+              Only Admin Can Access This
+            </div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.45, marginTop: '0.25rem' }}>
+              This portal is strictly restricted to authorized administrators and curators. Sign in with your assigned administrative credentials.
+            </div>
+          </div>
         </div>
 
         {error && (
@@ -100,7 +125,7 @@ export const AdminLoginPage: React.FC = () => {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@aaranya.com"
+              placeholder="Enter administrator email"
               className="form-input"
             />
           </div>
@@ -125,40 +150,8 @@ export const AdminLoginPage: React.FC = () => {
             className="btn-primary"
             style={{ width: '100%', marginTop: '0.5rem' }}
           >
-            {loading ? 'Authenticating...' : 'Sign In to Atelier'} <ArrowRight size={16} />
+            {loading ? 'Authenticating...' : 'Sign In as Administrator'} <ArrowRight size={16} />
           </button>
-
-          {/* Quick Demo Credentials Assistant */}
-          <div
-            style={{
-              marginTop: '1rem',
-              padding: '1rem',
-              backgroundColor: 'var(--bg-surface)',
-              border: '1px solid var(--border-gold)',
-              borderRadius: 'var(--radius-xs)',
-              textAlign: 'center',
-            }}
-          >
-            <div style={{ fontSize: '0.75rem', color: 'var(--color-forest-dark)', fontWeight: 600, marginBottom: '0.35rem' }}>
-              Curator Access Credentials:
-            </div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginBottom: '0.65rem' }}>
-              <code>admin@aaranya.com</code> / <code>aaranya2026</code>
-            </div>
-            <button
-              type="button"
-              onClick={handleFillDemo}
-              style={{
-                fontSize: '0.75rem',
-                color: 'var(--color-forest)',
-                textDecoration: 'underline',
-                fontWeight: 600,
-                cursor: 'pointer',
-              }}
-            >
-              Fill Credentials Automatically
-            </button>
-          </div>
         </form>
 
         <div style={{ textAlign: 'center', marginTop: '2rem' }}>

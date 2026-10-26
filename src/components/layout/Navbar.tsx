@@ -75,8 +75,8 @@ export const Navbar: React.FC = () => {
             <Link
               to="/admin"
               className="icon-btn"
-              title={admin ? `Admin: ${admin.name}` : 'Admin Atelier Portal'}
-              aria-label="Admin Atelier Portal"
+              title={admin ? `Admin: ${admin.name}` : 'Admin Only — Atelier Portal'}
+              aria-label={admin ? `Admin: ${admin.name}` : 'Admin Only — Atelier Portal'}
             >
               <User size={20} color={admin ? 'var(--color-gold-dark)' : 'currentColor'} />
             </Link>
@@ -269,7 +269,7 @@ export const Navbar: React.FC = () => {
                   to="/admin"
                   style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--color-forest-dark)' }}
                 >
-                  Atelier Admin Portal
+                  {admin ? 'Atelier Admin Portal' : 'Admin Portal (Admin Only)'}
                 </NavLink>
               </div>
             </div>

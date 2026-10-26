@@ -171,7 +171,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/admin" style={{ color: 'var(--color-gold-light)', fontSize: '0.9rem', fontWeight: 600 }}>
-                  Atelier Admin Dashboard
+                  Atelier Portal (Admin Only)
                 </Link>
               </li>
             </ul>
